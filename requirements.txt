@@ -1,1 +1,5 @@
-dotenv
+python-dotenv
+h3
+pandas
+requests
+tqdm
