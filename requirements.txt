@@ -3,4 +3,3 @@ geopandas
 pandas
 requests
 tqdm
-setuptools
