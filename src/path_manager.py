@@ -38,8 +38,10 @@ def get_data_paths():
 
 """
 from path_manager import get_data_paths
+
 paths = get_data_paths()
 print(paths['raw'])
 print(paths['processed'])
 
 """
+
