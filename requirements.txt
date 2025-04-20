@@ -2,4 +2,9 @@ python-dotenv
 geopandas
 pandas
 requests
+<<<<<<< HEAD
+=======
 tqdm
+setuptools
+pyarrow
+>>>>>>> 080e67c178d1f7109e3ea1c068962e7625f56bd5
