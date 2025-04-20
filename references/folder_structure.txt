@@ -1,0 +1,40 @@
+├── LICENSE
+├── README.md          <- Archivo README principal para desarrolladores que usen este proyecto.
+├── data
+│   ├── external       <- Datos provenientes de fuentes externas (terceros).
+│   ├── interim        <- Datos intermedios que han sido transformados parcialmente.
+│   ├── processed      <- Conjuntos de datos finales, listos para el modelado o análisis.
+│   └── raw            <- Datos originales sin procesar, inmutables.
+│
+├── docs               <- Documentación del proyecto generada con Sphinx. Más info en sphinx-doc.org.
+│
+├── models             <- Modelos entrenados y serializados, predicciones o resúmenes del modelo.
+│
+├── notebooks          <- Notebooks de Jupyter. Convención para nombrarlos: número (para ordenarlos),
+│                         iniciales del autor y una breve descripción con guiones, por ejemplo:
+│                         `1.0-jqp-exploracion-inicial-datos`.
+│
+├── references         <- Diccionarios de datos, manuales y otros materiales explicativos.
+│
+├── reports            <- Reportes generados en HTML, PDF, LaTeX, etc.
+│   └── figures        <- Gráficos e imágenes generadas para usar en los reportes.
+│
+├── requirements.txt   <- Archivo con los requerimientos para reproducir el entorno del análisis,
+│                         por ejemplo, generado con `pip freeze > requirements.txt`.
+│
+├── src                <- Código fuente utilizado en este proyecto.
+│   ├── __init__.py    <- Hace que `src` se comporte como un módulo de Python.
+│   │
+│   ├── data           <- Scripts para descargar o generar datos.
+│   │   └── make_dataset.py
+│   │
+│   ├── features       <- Scripts para transformar datos crudos en características para el modelado.
+│   │   └── build_features.py
+│   │
+│   ├── models         <- Scripts para entrenar modelos y usar modelos entrenados para hacer
+│   │   │                 predicciones.
+│   │   ├── predict_model.py
+│   │   └── train_model.py
+│   │
+│   └── visualization  <- Scripts para crear visualizaciones exploratorias o de resultados.
+│       └── visualize.py
