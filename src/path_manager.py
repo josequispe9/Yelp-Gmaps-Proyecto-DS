@@ -37,11 +37,20 @@ def get_data_paths():
 ### ------------------ Ejemplo de uso ------------------ ###
 
 """
+
+import os
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from path_manager import get_data_paths
 
-paths = get_data_paths()
-print(paths['raw'])
-print(paths['processed'])
+paths = get_data_paths()  # Ahora sí se define correctamente
+
+path_raw = paths['raw']
+path_processed = paths['processed']
+path_interim = paths['interim']
+path_external = paths['external']
+
 
 """
 
