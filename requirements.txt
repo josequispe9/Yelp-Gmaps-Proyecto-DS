@@ -5,3 +5,7 @@ requests
 tqdm
 setuptools
 pyarrow
+matplotlib
+numpy
+seaborn 
+contextily
