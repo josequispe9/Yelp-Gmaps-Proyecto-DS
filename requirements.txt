@@ -9,3 +9,4 @@ matplotlib
 numpy
 seaborn 
 contextily
+folium
