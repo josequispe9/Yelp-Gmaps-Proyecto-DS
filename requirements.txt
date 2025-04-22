@@ -10,3 +10,4 @@ numpy
 seaborn 
 contextily
 folium
+scipy
