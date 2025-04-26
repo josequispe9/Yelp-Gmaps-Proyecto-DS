@@ -93,3 +93,4 @@ df_restaurantes = limpiar_dataset_negocios(path_dataset, path_coord_nyc)
 
 # Guardar el dataset limpio sin agregar nuevas columnas
 df_restaurantes.to_parquet(path_dataset_clean, index=False)
+

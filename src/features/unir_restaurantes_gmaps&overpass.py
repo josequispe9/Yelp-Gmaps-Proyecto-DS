@@ -132,6 +132,135 @@ final_df
 
 
 
+#======================== Limpieza ========================#
+
+final_df.info()
+
+
+nulls = final_df.isnull().sum().sort_values(ascending=False)
+
+# Convertir 'num_of_reviews' a numérico (forzando errores a NaN)
+final_df['num_of_reviews'] = pd.to_numeric(final_df['num_of_reviews'], errors='coerce')
+
+
+final_df['is_good_restaurant'] = (
+    (final_df['avg_rating'] >= 4.2) &
+    (final_df['num_of_reviews'] >= 30) &
+    (final_df['price'].notnull()) &
+    (final_df['hours'].notnull()) &
+    (
+        final_df['url_gmaps'].notnull() | final_df['url_overpass'].notnull()
+    )
+)
+from shapely.geometry import Point
+import geopandas as gpd
+
+# Crear la geometría a partir de lat/long
+final_df['geometry'] = final_df.apply(lambda row: Point(row['longitude'], row['latitude']), axis=1)
+
+# Convertir a GeoDataFrame
+gdf_all = gpd.GeoDataFrame(final_df, geometry='geometry', crs='EPSG:4326')
+
+
+
+import matplotlib.pyplot as plt
+
+# Cargar el mapa base
+coord_nyc = gpd.read_file(path_coord_nyc)
+coord_nyc = coord_nyc.to_crs(epsg=4326)
+
+# Separar restaurantes buenos y no buenos
+gdf_good = gdf_all[gdf_all['is_good_restaurant'] == True]
+gdf_bad = gdf_all[gdf_all['is_good_restaurant'] == False]
+
+# Plot
+fig, ax = plt.subplots(figsize=(12, 12))
+coord_nyc.plot(ax=ax, color='lightgrey', edgecolor='white')
+
+# No buenos (rojo)
+gdf_bad.plot(ax=ax, markersize=5, color='red', label='Otros', alpha=0.3)
+
+# Buenos (verde)
+gdf_good.plot(ax=ax, markersize=7, color='green', label='Buenos', alpha=1)
+
+
+plt.title("Restaurantes Buenos vs Otros en NYC")
+plt.legend()
+plt.tight_layout()
+plt.show()
+
+
+
+
+
+
+
+
+# Rellenar valores faltantes para que no haya errores
+final_df['avg_rating'] = final_df['avg_rating'].fillna(0)
+final_df['num_of_reviews'] = final_df['num_of_reviews'].fillna(0)
+
+# Normalizar valores para hacer un puntaje de 0 a 1 (puedes ajustar los pesos según tu criterio)
+from sklearn.preprocessing import MinMaxScaler
+import numpy as np
+
+scaler = MinMaxScaler()
+
+# Escalar valores
+final_df[['rating_scaled', 'reviews_scaled']] = scaler.fit_transform(
+    final_df[['avg_rating', 'num_of_reviews']]
+)
+
+# Puntaje compuesto (puedes ajustar los pesos)
+final_df['score'] = (
+    0.7 * final_df['rating_scaled'] +
+    0.3 * final_df['reviews_scaled']
+)
+
+import matplotlib.pyplot as plt
+import geopandas as gpd
+
+# Convertir de nuevo a GeoDataFrame si hace falta
+final_df['geometry'] = final_df.apply(lambda row: Point(row['longitude'], row['latitude']), axis=1)
+gdf_all = gpd.GeoDataFrame(final_df, geometry='geometry', crs='EPSG:4326')
+
+# Cargar mapa base
+coord_nyc = gpd.read_file(path_coord_nyc)
+coord_nyc = coord_nyc.to_crs(epsg=4326)
+
+# Plot con hexbin (con valores del score)
+fig, ax = plt.subplots(figsize=(12, 12))
+coord_nyc.plot(ax=ax, color='lightgrey', edgecolor='white')
+
+# Heatmap con hexbin
+hb = ax.hexbin(
+    gdf_all.geometry.x,
+    gdf_all.geometry.y,
+    C=gdf_all['score'],      # C para usar los valores de score
+    gridsize=60,             # Puedes ajustar resolución
+    reduce_C_function=np.mean,
+    cmap='YlOrRd',           # Colores de calor
+    mincnt=1,
+    alpha=0.8
+)
+
+cb = fig.colorbar(hb, ax=ax, label='Puntaje promedio')
+plt.title('Mapa de calor: Puntaje promedio de restaurantes en NYC')
+plt.tight_layout()
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
 #======================== Analisis ========================#
 
 import matplotlib.pyplot as plt
