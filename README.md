@@ -1,14 +1,12 @@
-# Yelp-Gmaps-Proyecto-DS
-
-Entregar insights para el establecimiento de un nuevo restaurante en la ciudad de Nueva York.
+# Proyecto de Datos: Identificación de Zonas Óptimas para la Inversión Gastronómica en NYC
 
 ## Tabla de Contenidos
 - [Introducción](#introducción)
 - [Requisitos Previos](#requisitos-previos)
 - [Instalación](#instalación)
-- [Uso](#uso)
+- [Stack Tecnológico](#stack-tecnológico)
+- [Flujo de Datos](#flujo-de-datos)
 - [Estructura del Proyecto](#estructura-del-proyecto)
-- [Contribuciones](#contribuciones)
 - [Créditos](#créditos)
 - [Licencia](#licencia)
 
@@ -16,16 +14,25 @@ Entregar insights para el establecimiento de un nuevo restaurante en la ciudad d
 
 ## Introducción
 
-- El propósito del proyecto es predecir dónde es más conveniente emplazar un nuevo restaurante y que categoría de restaurante es mas conveniente, por vecindario, en la ciudad de Nueva York.
-- Un conglomerado de restaurantes necesita obtener información del mercado gastronómico de la ciudad de Nueva York para identificar dónde es la mejor inversión.
-- El resultado del proyecto es un Producto de Machine Learning y un Dashboard.
+La ciudad de Nueva York cuenta con uno de los mercados gastronómicos más competitivos y dinámicos del mundo. Cada año, cientos de nuevos restaurantes abren sus puertas, pero una gran parte de ellos fracasan en poco tiempo. Las causas suelen estar relacionadas con una elección inadecuada de ubicación o la falta de información estratégica al momento de invertir.
 
-## Requisitos Previos
+En el contexto actual —post-pandemia y en plena transformación urbana—, el papel de los datos se vuelve clave para tomar decisiones de negocio más inteligentes y con menor riesgo. La pregunta que guía este proyecto es clara: ¿Dónde abrir un restaurante para maximizar la rentabilidad en Nueva York?
 
-Lista de herramientas y bibliotecas necesarias para ejecutar el proyecto. Por ejemplo:
-- Python 3.12
-- Jupyter Notebook
-- Package: `numpy`, `pandas`, `matplotlib`, `seaborn`
+Actualmente, muchos inversores toman decisiones basadas en intuición, sin herramientas que respalden su análisis con información concreta. Además, existe una gran variabilidad entre los barrios: no todas las zonas ofrecen las mismas condiciones de éxito para un emprendimiento gastronómico.
+
+Desde este proyecto proponemos transformar esa intuición en decisiones informadas, a través de una solución basada en analítica de datos y Machine Learning.
+
+
+> ### Objetivo Principal
+> Desarrollar una solución integral que identifique las zonas con mayor potencial de inversión gastronómica en NYC, combinando el análisis de datos urbanos con modelos predictivos.
+
+## ¿Cómo se estructura el proyecto?
+
+El proyecto se organiza en torno a tres componentes clave:
+
+- **Creación de un producto de Analytics** que presenta el estado actual del sector gastronómico en Nueva York, permitiendo a los inversores obtener una visión clara de la situación del mercado.
+- **Desarrollo de un modelo de Machine Learning** diseñado para identificar patrones en los datos y predecir las zonas con mayor potencial de retorno económico, facilitando decisiones basadas en datos objetivos.
+- **Diseño de visualizaciones interactivas**, como mapas de calor y dashboards, que permiten explorar los datos de manera intuitiva y eficiente, brindando a los tomadores de decisión herramientas visuales para facilitar la identificación de las zonas más prometedoras.
 
 ## Instalación
 
@@ -39,13 +46,14 @@ Instrucciones paso a paso para instalar y configurar el entorno de desarrollo:
     ```bash
     pip install -r requirements.txt
 
-## Uso
+## Stack Tecnológico
 
-- Ejecuta el proyecto con el siguiente comando:
-    ```bash
-    python main.py
+![Stack tecnológico](docs/stack%20tecnologico.PNG)
 
-- Ejemplos de entradas y salidas.
+## Flujo de Datos
+
+![Flujo de Datos](docs/flujo%20de%20datos.PNG)
+
 
 ## Estructura del Proyecto
 
@@ -61,11 +69,6 @@ Instrucciones paso a paso para instalar y configurar el entorno de desarrollo:
     ├── README.md          # Este archivo
     └── requirements.txt   # Dependencias
 
-## Contribuciones
-
- - Crear un fork.
- - Enviar un pull request.
- - Reportar problemas o bugs.
 
 ## Créditos
 
