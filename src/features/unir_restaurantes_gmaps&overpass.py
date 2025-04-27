@@ -8,33 +8,24 @@ from shapely.geometry import Point
 import matplotlib.pyplot as plt
 import numpy as np
 
-
+# Cargar rutas de datos
 paths = get_data_paths()  
-
 path_raw = paths['raw']
 path_processed = paths['processed']
 path_interim = paths['interim']
 path_external = paths['external']
 
 
-# Cargar dataframe de overpass
+# Cargar dataframe de overpass y gmaps
 overpass_df = pd.read_parquet(os.path.join(path_interim, 'restaurantes_nyc_overpass.parquet'))
-# Cargar dataframe de google maps
 gmaps_df = pd.read_parquet(os.path.join(path_interim, 'restaurantes_nyc_google.parquet'))
 
 overpass_df = overpass_df.drop(columns=[ 'gmap_id', 'type', 'price'], errors='ignore')
-overpass_df.info()
-gmaps_df.info()
 
 
-
-overpass_df['type']
-gmaps_df['latitude']
-
-overpass_df['gmap_id']
-gmaps_df['gmap_id']
-
-
+#============================ Unir datos ============================#
+"""Con este codigo se busca unir los datos de Google Maps y Overpass 
+para obtener un dataset más completo de restaurantes en NYC."""
 
 from sklearn.neighbors import BallTree
 import numpy as np
@@ -50,8 +41,8 @@ dist, idx = tree.query(coords_overpass, k=1)
 
 # 3. Calcular distancia en metros
 dist_meters = dist[:, 0] * 6371000
-tolerance = 5
-matched_mask = dist_meters < tolerance
+tolerance = 5 # Distancia máxima de 5 metros
+matched_mask = dist_meters < tolerance # Filtrar coincidencias por distancia
 
 # 4. Matcheos por coordenadas
 overpass_matched = overpass_df[matched_mask].reset_index(drop=True)
@@ -127,9 +118,6 @@ overpass_only['fuente'] = 'overpass'
 
 # 8. Concatenar todo
 final_df = pd.concat([matched_df, gmaps_only, overpass_only], ignore_index=True)
-
-final_df
-
 
 
 #======================== Limpieza ========================#

@@ -2,9 +2,7 @@ python-dotenv
 geopandas
 pandas
 requests
-tqdm
-setuptools
-pyarrow
+
 matplotlib
 numpy
 seaborn 
