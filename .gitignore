@@ -1,3 +1,8 @@
+# Archivos específicos del proyecto
+.qodo
+/data/raw/
+/data/processed/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -25,8 +30,6 @@ var/
 *.egg
 
 # PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
 
@@ -64,24 +67,19 @@ target/
 *.db
 *.rdb
 
-# Pycharm
+# IDEs
 .idea
-
-# VS Code
 .vscode/
 *.code-workspace
-
-# Spyder
 .spyproject/
 
 # Jupyter NB Checkpoints
 .ipynb_checkpoints/
 
-
-# Mac OS-specific storage files
+# Mac OS-specific
 .DS_Store
 
-# vim
+# Vim
 *.swp
 *.swo
 
